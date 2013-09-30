@@ -3,10 +3,22 @@ require 'bundler/setup'
 
 require 'sinatra'
 
+
 get '/' do
   erb :index, locals: {
-                manga: manga_collection
+                collection: manga_collection.keys
               }
+end
+
+
+get '/:title' do
+  title    = params[:title]
+  chapters = manga_collection[title].keys
+
+  erb :chapters, locals: {
+                   title:    title,
+                   chapters: chapters
+                 }
 end
 
 

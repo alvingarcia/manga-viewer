@@ -1,0 +1,8 @@
+<h2>Manga Viewer</h2>
+<h3><%= title %><h3>
+
+<ul>
+  <% chapters.each do |chapter| %>
+    <li><a href="/<%= title %>/<%= chapter %>"><%= chapter %></a></li>
+  <% end %>
+</ul>
