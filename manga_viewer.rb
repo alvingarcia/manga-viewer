@@ -2,7 +2,8 @@ require 'rubygems'
 require 'bundler/setup'
 
 require 'sinatra'
-
+require 'sinatra/static_assets'
+require 'pry'
 
 get '/' do
   erb :index, locals: {
@@ -11,8 +12,7 @@ get '/' do
 end
 
 
-get '/:title' do
-  title    = params[:title]
+get '/:title' do |title|
   chapters = manga_collection[title].keys
 
   erb :chapters, locals: {
@@ -22,19 +22,38 @@ get '/:title' do
 end
 
 
+#get '/:title/:chapter'
+get %r{^/([^images][\w%20]+)/([\w%20]+)$} do |title, chapter|
+  redirect to("/#{ URI.escape(title) }/#{ URI.escape(chapter) }/1")
+end
+
+
+get '/*/*/*' do |title, chapter, page|
+  image = manga_collection[title][chapter][page.to_i - 1]
+
+  erb :image, locals: {
+                title:   title,
+                chapter: chapter,
+                page:    page,
+                image:   image
+              }
+end
+
+
 def manga_collection
-  path       = File.join('manga', '**', '*.jpg')
+  path       = File.join('public', 'images', '**', '**', '*.jpg')
   collection = {}
 
   Dir.glob(path).each do |item|
-    title, chapter, img = item.split(/\/|\\/)[1..3]
+    title, chapter, img = item.split(/\/|\\/)[2..4]
 
-    return if img.nil?
+    next if img.nil?
 
     collection[title]          ||= {}
     collection[title][chapter] ||= []
 
-    collection[title][chapter].push(img)
+    item.slice! 'public/'
+    collection[title][chapter].push(item)
   end
 
   collection
