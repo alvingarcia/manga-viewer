@@ -1,1 +1,33 @@
-<a href="/<%= title %>/<%= chapter %>/<% page %>"><%= image_tag image %></a>
+<div id="page">
+  <div style="margin: 10px 0 10px 20%; float: left;">
+    <a href="/<%= title %>"><%= title %></a> &gt;
+    <a><%= chapter %></a>
+  </div>
+
+  <div style="margin: 10px 20% 10px 0; float: right;">
+    <a href="<%= prev_img %>">&lt; Prev</a>
+    &nbsp; | &nbsp;
+    <a href="<%= next_img %>">Next &gt;</a>
+  </div>
+
+  <hr />
+
+  <a href="<%= next_img %>"><%= image_tag image %></a>
+</div>
+
+
+<style>
+
+#page {
+  background-color: #333333;
+  color: #c3c3c3;
+  font-size: 20px;
+  text-align: center;
+}
+
+#page a {
+  color: #c3c3c3;
+  text-decoration: none;
+}
+
+</style>
