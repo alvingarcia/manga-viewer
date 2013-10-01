@@ -31,3 +31,17 @@
 }
 
 </style>
+
+<script>
+
+document.onkeydown = function(e) {
+  var keycode = e.which || e.keyCode;
+
+  if (keycode == 39) {
+    window.location = '<%= next_img %>';
+  } else if (keycode == 37) {
+    window.location = '<%= prev_img %>';
+  }
+}
+
+</script>
