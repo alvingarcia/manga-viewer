@@ -31,7 +31,7 @@ end
 get '/*/*/*' do |title, chapter, page|
   manga = Manga.new(title, chapter, page)
 
-  erb :image, locals: {
+  erb :page, locals: {
                 title:    title,
                 chapter:  chapter,
                 page:     page,
@@ -43,8 +43,6 @@ end
 
 
 class Manga
-
-  attr_accessor :host
 
   def initialize(title = nil, chapter = nil, page = 1)
     fetch_collection
