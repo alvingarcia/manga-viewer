@@ -103,7 +103,7 @@ class Manga
   end
 
   def fetch_collection
-    path       = File.join('public', 'images', '**', '**', '*.jpg')
+    path       = File.join('public', 'images', '*', '*', '*.jpg')
     collection = {}
 
     Dir.glob(path).each do |item|
