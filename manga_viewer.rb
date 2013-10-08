@@ -37,7 +37,8 @@ get '/*/*/*' do |title, chapter, page|
                 page:     page,
                 image:    manga.current_image,
                 next_img: manga.next_image_link,
-                prev_img: manga.prev_image_link
+                prev_img: manga.prev_image_link,
+                total_pages: manga.current_chapter_total
               }
 end
 
@@ -63,6 +64,10 @@ class Manga
 
   def current_image
     chapter_images(@chapter)[@page]
+  end
+
+  def current_chapter_total
+    chapter_images(@chapter).size
   end
 
   def next_image_link
