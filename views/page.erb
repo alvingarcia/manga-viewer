@@ -1,18 +1,17 @@
-<div id="page">
-  <div style="margin: 10px 0 10px 20%; float: left;">
-    <a href="/<%= title %>"><%= title %></a> &gt;
-    <%= chapter %>  &gt;
-    Page <%= page %> of <%= total_pages %>
-  </div>
+<div style="margin: 10px 0 10px 20%; float: left;">
+  <a href="/<%= title %>"><%= title %></a> &gt;
+  <%= chapter %>  &gt;
+  Page <%= page %> of <%= total_pages %>
+</div>
 
-  <div style="margin: 10px 20% 10px 0; float: right;">
-    <a href="<%= prev_img %>">&lt; Prev</a>
-    &nbsp; | &nbsp;
-    <a href="<%= next_img %>">Next &gt;</a>
-  </div>
+<div style="margin: 10px 20% 10px 0; float: right;">
+  <a href="<%= prev_img %>">&lt; Prev</a>
+  &nbsp; | &nbsp;
+  <a href="<%= next_img %>">Next &gt;</a>
+</div>
 
+<div id="img-container">
   <a href="<%= next_img %>"><%= image_tag image %></a>
-
 </div>
 
 
@@ -21,9 +20,6 @@
 body {
   margin: 0;
   padding: 0;
-}
-
-#page {
   background-color: #232323;
   color: #E6E1DC;
   font-size: 16px;
@@ -31,9 +27,13 @@ body {
   padding: 6px 0 10px;
 }
 
-#page a {
+a {
   color: #E6E1DC;
   text-decoration: none;
+}
+
+#img-container {
+  clear: both;
 }
 
 </style>
